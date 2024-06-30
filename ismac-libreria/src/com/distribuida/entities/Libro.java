@@ -2,6 +2,7 @@ package com.distribuida.entities;
 
 import java.util.Date;
 
+
 public class Libro {
 	
 	private int idLibro;
