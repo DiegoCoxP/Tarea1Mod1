@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,7 +27,7 @@ public class LibroController {
     private LibroDAO libroDAO;
 
     @Autowired
-    @Qualifier("autorDAOImpl") // Cambia a "autorDAOImpl2" si es necesario
+    @Qualifier("autorDAOImpl")
     private AutorDAO autorDAO;
 
     @Autowired
@@ -62,10 +63,10 @@ public class LibroController {
                       @RequestParam("numPaginas") @Nullable Integer numPaginas,
                       @RequestParam("edicion") @Nullable String edicion,
                       @RequestParam("idioma") @Nullable String idioma,
-                      @RequestParam("fechaPublicacion") @Nullable Date fechaPublicacion,
+                      @RequestParam("fechaPublicacion") @Nullable @DateTimeFormat (pattern = "yyyy-MM-dd") Date fechaPublicacion,
                       @RequestParam("descripcion") @Nullable String descripcion,
                       @RequestParam("tipoPasta") @Nullable String tipoPasta,
-                      @RequestParam("ISBN") @Nullable String ISBN,
+                      @RequestParam("iSBN") @Nullable String iSBN,
                       @RequestParam("numEjemplares") @Nullable Integer numEjemplares,
                       @RequestParam("portada") @Nullable String portada,
                       @RequestParam("presentacion") @Nullable String presentacion,
@@ -76,10 +77,10 @@ public class LibroController {
         Libro libro;
         if (idLibro == null) {
             libro = new Libro(0, titulo, editorial, numPaginas, edicion, idioma, fechaPublicacion,
-                              descripcion, tipoPasta, ISBN, numEjemplares, portada, presentacion, precio);
+                              descripcion, tipoPasta, iSBN, numEjemplares, portada, presentacion, precio);
         } else {
             libro = new Libro(idLibro, titulo, editorial, numPaginas, edicion, idioma, fechaPublicacion,
-                              descripcion, tipoPasta, ISBN, numEjemplares, portada, presentacion, precio);
+                              descripcion, tipoPasta, iSBN, numEjemplares, portada, presentacion, precio);
         }
 
         libro.setCategoria(categoriaDAO.findOne(idCategoria));

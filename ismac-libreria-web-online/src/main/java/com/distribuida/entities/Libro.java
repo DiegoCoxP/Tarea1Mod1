@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -36,13 +38,14 @@ public class Libro {
 	private String edicion;
 	@Column(name = "idioma")
 	private String idioma;
+	@DateTimeFormat (pattern = "yyyy-MM-dd")
 	@Column(name = "fecha_publicacion")
 	private Date fechaPublicacion;
 	@Column(name = "descripcion")
 	private String descripcion;
 	@Column(name = "tipo_pasta")
 	private String tipoPasta;
-	@Column(name = "isbn")
+	@Column(name = "iSBN")
 	private String iSBN;
 	@Column(name = "num_ejemplares")
 	private int numEjemplares;
